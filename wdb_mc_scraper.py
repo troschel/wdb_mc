@@ -206,4 +206,4 @@ if __name__ == "__main__":
     # Set max_pages=None for all, or e.g. max_pages=3 for testing
     jobs = scrape_all_jobs(BASE_URL, max_pages=None)
 
-    save_to_csv(jobs)
+    save_to_csv(jobs, filename="datasets/jobscout24_all_jobs.csv")
