@@ -3,7 +3,7 @@ library(lubridate)
 library(ggplot2)
 library(readxl)
 
-jobs <- read.csv("/Users/pascaltrosch/Documents/wdb/jobscout24_all_jobs.csv")
+jobs <- read.csv("~datasets/jobscout24_all_jobs.csv")
 
 
 jobs$publishing_date_corr <- sub("(\\+\\d\\d:\\d\\d):\\d\\d$", "\\1", jobs$publishing_date)
