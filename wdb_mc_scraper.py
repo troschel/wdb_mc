@@ -205,3 +205,34 @@ if __name__ == "__main__":
     jobs = scrape_all_jobs(BASE_URL, max_pages=None)
 
     save_to_csv(jobs, filename="datasets/jobscout24_all_jobs.csv")
+
+
+# ----------------------------------------------------------------------
+#  FUNCTIONS FOR TESTING
+# ----------------------------------------------------------------------
+
+def clean_quota(raw_quota):
+    """Normalize quota values e.g. '80-100%' → '80-100'."""
+    if not raw_quota:
+        return None
+    return raw_quota.replace("%", "")
+
+
+def extract_title_from_article(article):
+    """
+    Selenium version: Try multiple title selectors.
+    """
+    try:
+        return article.find_element(By.CSS_SELECTOR, ".header-title h2").text.strip()
+    except:
+        pass
+
+    try:
+        return article.find_element(By.CSS_SELECTOR, ".header-title h1").text.strip()
+    except:
+        pass
+
+    try:
+        return article.find_element(By.CSS_SELECTOR, "h1").text.strip()
+    except:
+        return None
