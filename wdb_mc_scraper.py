@@ -22,7 +22,7 @@ def scrape_job_detail(driver, url):
         EC.presence_of_element_located((By.CSS_SELECTOR, "article.job-details"))
     )
 
-    # ---- TITLE (robust: h2 or h1, depending on layout) ----
+    # Title of job ad
     try:
         title_el = article.find_element(By.CSS_SELECTOR, ".header-title h2")
     except Exception:
@@ -34,14 +34,14 @@ def scrape_job_detail(driver, url):
 
     title = title_el.text.strip()
 
-    # ---- COMPANY ----
+    # Company of Job ad
     try:
         company_el = article.find_element(By.CSS_SELECTOR, ".company-title")
         company = company_el.text.strip()
     except Exception:
         company = ""
 
-    # ---- ATTRIBUTES FROM DATA-* (very stable) ----
+    # Attributes such as publishing date, employment grade and location
     publishing_date = article.get_attribute("data-pub-date")
     quota = article.get_attribute("data-employment-grade")
     location = article.get_attribute("data-job-location")
@@ -78,7 +78,7 @@ def get_total_pages(driver):
 
 
 # ----------------------------------------------------------------------
-#  SCRAPE ALL JOBS ON CURRENT PAGE (LIST VIEW)
+#  SCRAPE ALL JOBS ON CURRENT PAGE
 # ----------------------------------------------------------------------
 def collect_jobs_on_current_page(driver):
     """
@@ -123,7 +123,7 @@ def scrape_all_jobs(base_url, max_pages=None, delay_between_jobs=0.3, delay_betw
 
     all_results = []
 
-    # --- First page: determine total_pages ---
+    # Determine total number of pages on the first page
     driver.get(base_url)
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "li.job-list-item")))
     total_pages = get_total_pages(driver)
@@ -133,15 +133,13 @@ def scrape_all_jobs(base_url, max_pages=None, delay_between_jobs=0.3, delay_betw
 
     print(f"Detected {total_pages} pages of results.")
 
-    # --- Loop over pages ---
+    # Loop over all pages
     for page in range(1, total_pages + 1):
         if page == 1:
             page_url = base_url
         else:
             # subsequent pages use ?p=...
             if "?" in base_url:
-                # if base_url already had params, we might want to be more careful;
-                # for simple /de/jobs/ it's fine:
                 page_url = re.sub(r"[?&]p=\d+", "", base_url)  # remove old p
                 if "?" in page_url:
                     page_url += f"&p={page}"
