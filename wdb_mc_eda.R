@@ -2,9 +2,13 @@ library(tidyverse)
 library(lubridate)
 library(ggplot2)
 library(readxl)
+library(stargazer)
 
 # Read dataset with job ads
 jobs <- read.csv("datasets/jobscout24_all_jobs.csv")
+
+# Create summary table Nr. 1 for report
+stargazer(jobs[1:5,], summary=FALSE, rownames=FALSE)
 
 # Correct publishing date and time of job ads
 jobs$publishing_date_corr <- sub("(\\+\\d\\d:\\d\\d):\\d\\d$", "\\1", jobs$publishing_date)
@@ -44,6 +48,9 @@ jobs <- jobs %>%
     # if high is missing, set equal to low
     quota_high = ifelse(is.na(quota_high), quota_low, quota_high)
   )
+
+# Create summary table Nr. 1 for report
+stargazer(jobs[1:5,], summary=FALSE, rownames=FALSE)
 
 # Boxpolt displaying publishing date nationwide
 ggplot(data=jobs, aes(publishing_date))+geom_boxplot()+theme_minimal()+
