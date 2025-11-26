@@ -21,6 +21,7 @@ The Repo is structured as follows:
 - wdb_mc_eda.R (R-Script to perform baic explorative data analysis on the data obtained by wdb_mc_scraper.py)
 - wdb_mc.Rproj (Git-Framework for R-File used do perform EDA)
 - requirements.txt (Packages required for Python-scripts)
+- WDB-Minichallenge.pdf (Final Report as PDF-Document)
 
 ## Author
 This project was conducted by Pascal Trösch (FHNW Data Science).
