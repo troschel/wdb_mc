@@ -14,8 +14,8 @@ The Repo is structured as follows:
 - Datasets
   - gemeindestand.xlsx (List of municipalities, obtained from the swiss federal office for statistics)
   - jobscout24_all_jobs.csv (Data from last scraping process. For Up-to-date data, please run respective .py-script)
-- workflows
-  - python_tests.yml (Automatically runs tests on main web scraper file when changes are pushed to repo)
+- .github/workflows
+  - main.yml (Automatically runs tests on main web scraper file when changes are pushed to repo)
 - wdb_mc_scraper.py (Main Web scraper file to scrape job ad data from www.jobscout24.ch)
 - test_scraper.py (Test file to test different features of wdb_mc_scraper.py)
 - wdb_mc_eda.R (R-Script to perform baic explorative data analysis on the data obtained by wdb_mc_scraper.py)
