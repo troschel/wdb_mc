@@ -28,3 +28,5 @@ This project was conducted by Pascal Trösch (FHNW Data Science).
 ## Acknowledgements
 
 Bundesamt für Statistik (2025): Gemeindestand (https://www.agvchapp.bfs.admin.ch/de/state/results?SnapshotDate=06.04.2025) [Obtained from website 21.11.2025]
+
+
